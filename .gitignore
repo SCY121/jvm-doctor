@@ -12,3 +12,4 @@ docs/superpowers/
 .env
 .env.*
 !.env.example
+.tmp-*

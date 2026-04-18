@@ -1,4 +1,4 @@
-[English](README.md) | [简体中文](README.zh-CN.md)
+[English](README.md) | [Chinese](README.zh-CN.md)
 
 # jvm-doctor
 
@@ -85,6 +85,23 @@ mvn -q -pl jvm-doctor-cli exec:java "-Dexec.args=--thread-dump samples/incidents
 mvn -q -pl jvm-doctor-server spring-boot:run
 ```
 
+The default server address is `http://localhost:8080`. If you start the packaged jar with `--server.port=18080`, replace the port in the examples below.
+
+### Try The HTTP API
+
+```powershell
+curl.exe -X POST "http://localhost:8080/api/v1/analyses" `
+  -F "threadDump=@samples/incidents/db-pool-exhausted/thread-dump.txt" `
+  -F "actuatorMetrics=@samples/incidents/db-pool-exhausted/actuator-metrics.json" `
+  -F "logFile=@samples/incidents/db-pool-exhausted/app.log"
+```
+
+The response includes:
+
+- `overview`: parsed artifact counts
+- `report`: deterministic findings, hypotheses, and next actions
+- `ai`: optional server-side AI augmentation with `DISABLED`, `COMPLETED`, or `FAILED` status
+
 ### Optional AI Augmentation For The Server
 
 AI is disabled by default. To enable it, provide configuration through environment variables:
@@ -95,6 +112,17 @@ $env:JVM_DOCTOR_AI_BASE_URL="<openai-compatible-base-url>"
 $env:JVM_DOCTOR_AI_API_KEY="<api-key>"
 $env:JVM_DOCTOR_AI_MODEL="<model-name>"
 ```
+
+Verified example on `2026-04-18`:
+
+```powershell
+$env:JVM_DOCTOR_AI_ENABLED="true"
+$env:JVM_DOCTOR_AI_BASE_URL="https://api.longcat.chat/openai"
+$env:JVM_DOCTOR_AI_API_KEY="<api-key>"
+$env:JVM_DOCTOR_AI_MODEL="LongCat-Flash-Chat"
+```
+
+This configuration was validated end to end against `POST /api/v1/analyses`, and the response returned `ai.status = COMPLETED`.
 
 Available endpoints in `v0`:
 
@@ -168,6 +196,7 @@ The benchmark validates each case against `expectations.json`, including:
 - [Product and architecture notes](docs/jvm-doctor-prd.md)
 - [Server AI augmentation design](docs/server-ai-design.md)
 - [Artifact input contract](docs/artifact-input-contract.md)
+- [Test and UX report](docs/test-report-2026-04-18.md)
 
 ## Roadmap
 

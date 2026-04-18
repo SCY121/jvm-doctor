@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -95,5 +96,31 @@ class AnalysisControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rules").isArray())
                 .andExpect(jsonPath("$.rules[0]").exists());
+    }
+
+    @Test
+    void shouldReturnStructuredValidationErrorForInvalidSnapshotRequest() throws Exception {
+        mockMvc.perform(post("/api/v1/actuator/snapshot")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {}
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Request validation failed"))
+                .andExpect(jsonPath("$.fieldErrors.baseUrl").exists());
+    }
+
+    @Test
+    void shouldReturnJsonGatewayErrorWhenSnapshotTargetIsUnreachable() throws Exception {
+        mockMvc.perform(post("/api/v1/actuator/snapshot")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "baseUrl": "http://localhost:65534"
+                                }
+                                """))
+                .andExpect(status().isBadGateway())
+                .andExpect(jsonPath("$.error").value("Failed to fetch actuator snapshot"))
+                .andExpect(jsonPath("$.details").exists());
     }
 }

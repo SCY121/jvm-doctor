@@ -76,6 +76,13 @@ Planned properties:
 
 The public repository must never contain a real API key.
 
+One verified real-provider example as of `2026-04-18`:
+
+- base URL: `https://api.longcat.chat/openai`
+- model: `LongCat-Flash-Chat`
+- validated path: `POST /api/v1/analyses`
+- observed result: `response.ai.status = COMPLETED`
+
 ## API Shape
 
 `AnalysisResponse` gains an optional AI block with:

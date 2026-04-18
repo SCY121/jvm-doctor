@@ -85,6 +85,23 @@ mvn -q -pl jvm-doctor-cli exec:java "-Dexec.args=--thread-dump samples/incidents
 mvn -q -pl jvm-doctor-server spring-boot:run
 ```
 
+默认服务地址是 `http://localhost:8080`。如果你用打包后的 jar 并通过 `--server.port=18080` 启动，下面示例里的端口也要一起替换。
+
+### 直接试一下 HTTP API
+
+```powershell
+curl.exe -X POST "http://localhost:8080/api/v1/analyses" `
+  -F "threadDump=@samples/incidents/db-pool-exhausted/thread-dump.txt" `
+  -F "actuatorMetrics=@samples/incidents/db-pool-exhausted/actuator-metrics.json" `
+  -F "logFile=@samples/incidents/db-pool-exhausted/app.log"
+```
+
+返回结果包含：
+
+- `overview`：解析到的材料数量
+- `report`：确定性 findings、hypotheses 和下一步动作
+- `ai`：可选的 server 侧 AI 增强，状态可能是 `DISABLED`、`COMPLETED` 或 `FAILED`
+
 ### 为 Server 启用可选 AI 增强
 
 AI 默认关闭，需要通过环境变量显式开启：
@@ -95,6 +112,17 @@ $env:JVM_DOCTOR_AI_BASE_URL="<openai-compatible-base-url>"
 $env:JVM_DOCTOR_AI_API_KEY="<api-key>"
 $env:JVM_DOCTOR_AI_MODEL="<model-name>"
 ```
+
+已验证的一组示例配置（`2026-04-18`）：
+
+```powershell
+$env:JVM_DOCTOR_AI_ENABLED="true"
+$env:JVM_DOCTOR_AI_BASE_URL="https://api.longcat.chat/openai"
+$env:JVM_DOCTOR_AI_API_KEY="<api-key>"
+$env:JVM_DOCTOR_AI_MODEL="LongCat-Flash-Chat"
+```
+
+这组配置已经对 `POST /api/v1/analyses` 做过真实联调，返回结果中的 `ai.status = COMPLETED`。
 
 `v0` 当前提供的接口：
 
@@ -168,6 +196,7 @@ benchmark 会根据每个样本目录下的 `expectations.json` 校验：
 - [产品与架构说明](docs/jvm-doctor-prd.md)
 - [Server AI 增强设计](docs/server-ai-design.md)
 - [输入协议](docs/artifact-input-contract.md)
+- [测试与体验报告](docs/test-report-2026-04-18.md)
 
 ## 路线图
 

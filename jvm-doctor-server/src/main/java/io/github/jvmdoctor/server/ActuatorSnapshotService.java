@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,8 +80,10 @@ public class ActuatorSnapshotService {
                     List.of(threadDumpArtifact, metricsArtifact),
                     Map.of("source", "actuator-snapshot", "baseUrl", request.baseUrl())
             );
+        } catch (RestClientException exception) {
+            throw new SnapshotFetchException("Failed to fetch actuator snapshot", exception);
         } catch (IOException exception) {
-            throw new IllegalStateException("Failed to process actuator snapshot", exception);
+            throw new SnapshotFetchException("Failed to process actuator snapshot payload", exception);
         }
     }
 
