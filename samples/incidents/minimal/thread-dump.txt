@@ -1,0 +1,13 @@
+"http-nio-8080-exec-1" #21 daemon prio=5 os_prio=0 tid=0x000000001 nid=0x101 waiting on condition [0x000000000]
+   java.lang.Thread.State: RUNNABLE
+        at java.net.SocketInputStream.socketRead0(Native Method)
+        at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+
+"HikariPool-1 housekeeper" #22 daemon prio=5 os_prio=0 tid=0x000000002 nid=0x102 waiting on condition [0x000000000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+        at jdk.internal.misc.Unsafe.park(Native Method)
+
+"http-nio-8080-exec-2" #23 daemon prio=5 os_prio=0 tid=0x000000003 nid=0x103 waiting on condition [0x000000000]
+   java.lang.Thread.State: WAITING (parking)
+        at jdk.internal.misc.Unsafe.park(Native Method)
+

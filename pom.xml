@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>io.github.jvmdoctor</groupId>
+    <artifactId>jvm-doctor</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>jvm-doctor</name>
+    <description>AI-assisted incident triage for Spring Boot and JVM applications.</description>
+
+    <modules>
+        <module>jvm-doctor-domain</module>
+        <module>jvm-doctor-parser</module>
+        <module>jvm-doctor-rules</module>
+        <module>jvm-doctor-ai</module>
+        <module>jvm-doctor-engine</module>
+        <module>jvm-doctor-cli</module>
+        <module>jvm-doctor-server</module>
+        <module>jvm-doctor-bench</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <picocli.version>4.7.6</picocli.version>
+    </properties>
+</project>

@@ -1,0 +1,2 @@
+2026-04-17 21:12:01 ERROR c.e.BatchJob - java.lang.OutOfMemoryError: Java heap space
+2026-04-17 21:12:05 ERROR c.e.BatchJob - GC overhead limit exceeded while compacting result cache

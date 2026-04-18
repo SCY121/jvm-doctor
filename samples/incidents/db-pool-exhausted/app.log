@@ -1,0 +1,2 @@
+2026-04-17 21:00:01 ERROR com.zaxxer.hikari.pool.HikariPool - Connection is not available, request timed out after 30000ms.
+2026-04-17 21:00:02 ERROR c.e.client.RemoteClient - java.net.SocketTimeoutException: Read timed out

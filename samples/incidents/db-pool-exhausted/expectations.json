@@ -1,0 +1,13 @@
+{
+  "name": "Database pool exhaustion with downstream timeout",
+  "requiredFindingIds": [
+    "DB_POOL_EXHAUSTED",
+    "HTTP_THREAD_POOL_EXHAUSTED",
+    "LONG_BLOCKING_IO"
+  ],
+  "forbiddenFindingIds": [
+    "DEADLOCK_DETECTED",
+    "OOM_OR_LEAK_SUSPECTED"
+  ],
+  "maxFindingCount": 3
+}

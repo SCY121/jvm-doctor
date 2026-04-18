@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: jvm-doctor-server
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+info:
+  app:
+    name: jvm-doctor
+    phase: v0
+
+jvm-doctor:
+  ai:
+    enabled: ${JVM_DOCTOR_AI_ENABLED:false}
+    base-url: ${JVM_DOCTOR_AI_BASE_URL:}
+    api-key: ${JVM_DOCTOR_AI_API_KEY:}
+    model: ${JVM_DOCTOR_AI_MODEL:}
+    timeout: ${JVM_DOCTOR_AI_TIMEOUT:20s}
+    temperature: ${JVM_DOCTOR_AI_TEMPERATURE:0.1}
+    max-findings: ${JVM_DOCTOR_AI_MAX_FINDINGS:8}

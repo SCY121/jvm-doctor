@@ -1,0 +1,11 @@
+{
+  "name": "Heap pressure and OOM signal",
+  "requiredFindingIds": [
+    "OOM_OR_LEAK_SUSPECTED",
+    "FULL_GC_STORM"
+  ],
+  "forbiddenFindingIds": [
+    "DEADLOCK_DETECTED"
+  ],
+  "maxFindingCount": 2
+}

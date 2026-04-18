@@ -1,0 +1,15 @@
+"http-nio-8080-exec-1" #21 daemon
+   java.lang.Thread.State: RUNNABLE
+        at java.net.SocketInputStream.socketRead0(Native Method)
+
+"http-nio-8080-exec-2" #22 daemon
+   java.lang.Thread.State: WAITING (parking)
+        at java.net.SocketInputStream.socketRead0(Native Method)
+
+"http-nio-8080-exec-3" #23 daemon
+   java.lang.Thread.State: WAITING (parking)
+        at java.net.SocketInputStream.socketRead0(Native Method)
+
+"http-nio-8080-exec-4" #24 daemon
+   java.lang.Thread.State: RUNNABLE
+        at java.net.SocketInputStream.socketRead0(Native Method)

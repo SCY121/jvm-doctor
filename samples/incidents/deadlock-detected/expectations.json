@@ -1,0 +1,11 @@
+{
+  "name": "Java-level deadlock",
+  "requiredFindingIds": [
+    "DEADLOCK_DETECTED"
+  ],
+  "forbiddenFindingIds": [
+    "DB_POOL_EXHAUSTED",
+    "OOM_OR_LEAK_SUSPECTED"
+  ],
+  "maxFindingCount": 1
+}

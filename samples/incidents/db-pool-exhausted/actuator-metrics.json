@@ -1,0 +1,46 @@
+{
+  "names": [
+    "hikaricp.connections.active",
+    "hikaricp.connections.max",
+    "tomcat.threads.current",
+    "tomcat.threads.busy"
+  ],
+  "metrics": [
+    {
+      "name": "hikaricp.connections.active",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "name": "hikaricp.connections.max",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "name": "tomcat.threads.current",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 4
+        }
+      ]
+    },
+    {
+      "name": "tomcat.threads.busy",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 4
+        }
+      ]
+    }
+  ]
+}

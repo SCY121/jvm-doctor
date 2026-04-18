@@ -1,0 +1,27 @@
+{
+  "names": [
+    "jvm.threads.live",
+    "hikaricp.connections.active",
+    "jvm.gc.pause"
+  ],
+  "metrics": [
+    {
+      "name": "jvm.threads.live",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 42
+        }
+      ]
+    },
+    {
+      "name": "hikaricp.connections.active",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 10
+        }
+      ]
+    }
+  ]
+}

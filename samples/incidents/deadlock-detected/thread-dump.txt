@@ -1,0 +1,20 @@
+"worker-1" #11 daemon
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.example.OrderService.lockSecond(OrderService.java:84)
+        - waiting to lock <0x000000076b0a1111> (a java.lang.Object)
+        - locked <0x000000076b0a2222> (a java.lang.Object)
+
+"worker-2" #12 daemon
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.example.OrderService.lockFirst(OrderService.java:61)
+        - waiting to lock <0x000000076b0a2222> (a java.lang.Object)
+        - locked <0x000000076b0a1111> (a java.lang.Object)
+
+Found one Java-level deadlock:
+=============================
+"worker-1":
+  waiting to lock monitor 0x000000076b0a1111 (object 0x000000076b0a1111, a java.lang.Object),
+  which is held by "worker-2"
+"worker-2":
+  waiting to lock monitor 0x000000076b0a2222 (object 0x000000076b0a2222, a java.lang.Object),
+  which is held by "worker-1"
